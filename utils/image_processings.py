@@ -90,6 +90,7 @@ def w2d(img, mode='haar', level=1):
 
 
 
+
 def pre_process_image(img, image_size, is_path=False):
     """
     Pre-processes an image by optionally reading it from a file path, applying wavelet decomposition,
@@ -113,18 +114,21 @@ def pre_process_image(img, image_size, is_path=False):
     # Load the image if a file path is provided
     if is_path:
         img = cv2.imread(img)
-    
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
     # Apply wavelet decomposition on the image using the w2d function
     img_har = w2d(img, 'db1', 5)
     
     # Resize the original image and the wavelet-decomposed image
-    img_scaled = cv2.resize(img, (image_size, image_size))
+    img_scaled = cv2.resize(img_gray, (image_size, image_size))
     img_har_scaled = cv2.resize(img_har, (image_size, image_size))
+    # print(img_scaled.size, img_har_scaled.size)
     
     # Reshape and combine both images into a single vertical array
     combined_img = np.vstack((
-        img_scaled.reshape(image_size * image_size * 3, 1),  # Flatten and stack the RGB image
+        img_scaled.reshape(image_size * image_size, 1),  # Flatten and stack the RGB image
         img_har_scaled.reshape(image_size * image_size, 1)   # Flatten and stack the wavelet-decomposed image
     ))
 
-    return combined_img.reshape(16384)
+    return combined_img.reshape(img_scaled.size + img_har_scaled.size)
+

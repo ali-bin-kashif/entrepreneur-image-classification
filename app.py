@@ -64,6 +64,7 @@ if uploaded_file is not None:
     # Display the predicted name
     st.success(f"Entrepreneur name is: {predicted_name}")
 
+
 # Footer or additional information
 st.markdown("""
 ---
