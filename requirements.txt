@@ -1,0 +1,8 @@
+scikit-learn
+pandas
+opencv-python
+Pillow
+matplotlib
+seaborn
+streamlit
+PyWavelets
