@@ -1,2 +1,2 @@
-# food-image-classification
-Building an ML classifier for identifying food items.
+# Entrepreneurs Facial Image Classification
+Developing an image classification model using Classical ML Models and OpenCV to classify entrepreneurs based on facial features
